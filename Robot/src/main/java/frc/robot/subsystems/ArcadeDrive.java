@@ -38,6 +38,7 @@ public class ArcadeDrive extends SubsystemBase {
         rightPower -= stick1/2.0;
       } 
     }
+    
     if(leftTrigger) {
       if (stick1 > 0) {
         leftPower -= stick1/2.0;
