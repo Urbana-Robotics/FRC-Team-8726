@@ -29,6 +29,7 @@ public class ArcadeDrive extends SubsystemBase {
     double leftPower = (rightTrigger ? 0.25 : leftTrigger ? -0.25 : 0.0);
     double rightPower = leftPower;
 
+<<<<<<< HEAD
     if (rightTrigger) {
       if (stick1 > 0) {
         leftPower += stick1/2.0;
@@ -39,6 +40,8 @@ public class ArcadeDrive extends SubsystemBase {
       } 
     }
     
+=======
+>>>>>>> 32e381dcba569e4d8bda4605543e677eb28e12c2
     if(leftTrigger) {
       if (stick1 > 0) {
         leftPower -= stick1/2.0;
@@ -46,6 +49,14 @@ public class ArcadeDrive extends SubsystemBase {
       } else if (stick1 < 0) {
         leftPower -= stick1/2.0;
         rightPower += stick1/2.0;
+      } 
+    } else {
+      if (stick1 > 0) {
+        leftPower += stick1/2.0;
+        rightPower -= stick1/2.0;
+      } else if (stick1 < 0) {
+        leftPower += stick1/2.0;
+        rightPower -= stick1/2.0;
       } 
     }
     
