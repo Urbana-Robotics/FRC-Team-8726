@@ -30,11 +30,11 @@ public class ArcadeDrive extends SubsystemBase {
     //_victor1.set(ControlMode.PercentOutput,(stick1 > 0 ? -stick1 : stick1 < 0 ? stick1 :0.0));
       //_victor3.set(ControlMode.PercentOutput,(stick1 > 0 ? stick1 : stick1 < 0 ? -stick1 :0.0));
       if (stick1 > 0){
-        _victor1.set(ControlMode.PercentOutput,-stick1);
-        _victor3.set(ControlMode.PercentOutput,stick1);
+        _victor1.set(ControlMode.PercentOutput,-0.25);
+        _victor3.set(ControlMode.PercentOutput,0.25);
       } else if (stick1 < 0){
-        _victor1.set(ControlMode.PercentOutput,stick1);
-        _victor3.set(ControlMode.PercentOutput,-stick1);
+        _victor1.set(ControlMode.PercentOutput,0.25);
+        _victor3.set(ControlMode.PercentOutput,-0.25);
       }
 
     } else {
