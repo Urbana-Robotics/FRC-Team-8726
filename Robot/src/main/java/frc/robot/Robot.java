@@ -29,7 +29,7 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
     ArcadeDrive drivetrain = new ArcadeDrive();
-    // TankDrive drivetrain = new TankDrive();
+    // Tankdrive drivetrain = new Tankdrive();
   }
 
   /**

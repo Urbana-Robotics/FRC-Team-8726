@@ -9,6 +9,7 @@ public class TankDrive extends SubsystemBase {
     VictorSPX _victor3 = new VictorSPX(3);
     Joystick _joystick = new Joystick(0);
     public TankDrive(){
+        
     }
 
     @Override
