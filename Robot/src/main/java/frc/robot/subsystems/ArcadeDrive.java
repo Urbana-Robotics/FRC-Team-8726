@@ -36,7 +36,7 @@ public class ArcadeDrive extends SubsystemBase {
       } else if (stick1 < 0) {
         leftPower -= stick1/2.0;
         rightPower += stick1/2.0;
-      } 
+      }  
     } else {
       if (stick1 > 0) {
         leftPower += stick1/2.0;
