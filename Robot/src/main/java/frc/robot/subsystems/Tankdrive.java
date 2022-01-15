@@ -4,11 +4,11 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.Joystick;
 
-public class Tankdrive extends SubsystemBase {
+public class TankDrive extends SubsystemBase {
     VictorSPX _victor1 = new VictorSPX(1);
     VictorSPX _victor3 = new VictorSPX(3);
     Joystick _joystick = new Joystick(0);
-    public Tankdrive(){
+    public TankDrive(){
     }
 
     @Override

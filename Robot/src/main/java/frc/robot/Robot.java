@@ -7,9 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import edu.wpi.first.wpilibj.Joystick;
+import frc.robot.subsystems.*;
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -21,9 +19,6 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
-  VictorSPX _victor1 = new VictorSPX(1);
-  VictorSPX _victor3 = new VictorSPX(3);
-  Joystick _joystick = new Joystick(0);
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -33,6 +28,8 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    ArcadeDrive drivetrain = new ArcadeDrive();
+    // TankDrive drivetrain = new TankDrive();
   }
 
   /**
@@ -48,10 +45,7 @@ public class Robot extends TimedRobot {
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
-    double stick1 = _joystick.getRawAxis(1);
-    double stick0 = _joystick.getRawAxis(3);
-    _victor1.set(ControlMode.PercentOutput, stick0/-1.5);//offset should reduce speed
-    _victor3.set(ControlMode.PercentOutput, stick1/1.5);
+
     CommandScheduler.getInstance().run();
   }
 
