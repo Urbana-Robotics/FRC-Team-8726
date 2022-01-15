@@ -29,17 +29,25 @@ public class ArcadeDrive extends SubsystemBase {
     double leftPower = (rightTrigger ? 0.25 : leftTrigger ? -0.25 : 0.0);
     double rightPower = leftPower;
 
-    if (leftPower > 0) {
-      stick1 = -stick1;
+    if (rightTrigger) {
       if (stick1 > 0) {
         leftPower += stick1/2.0;
         rightPower -= stick1/2.0;
       } else if (stick1 < 0) {
         leftPower += stick1/2.0;
         rightPower -= stick1/2.0;
-      }
+      } 
     }
-
+    if(leftTrigger) {
+      if (stick1 > 0) {
+        leftPower -= stick1/2.0;
+        rightPower += stick1/2.0;
+      } else if (stick1 < 0) {
+        leftPower -= stick1/2.0;
+        rightPower += stick1/2.0;
+      } 
+    }
+    
     _victor1.set(ControlMode.PercentOutput, leftPower);
     _victor3.set(ControlMode.PercentOutput, -rightPower);
  
