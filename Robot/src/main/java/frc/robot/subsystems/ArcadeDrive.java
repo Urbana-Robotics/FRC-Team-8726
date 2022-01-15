@@ -25,7 +25,13 @@ public class ArcadeDrive extends SubsystemBase {
 
     boolean leftTrigger = _joystick.getRawButton(7);
     boolean rightTrigger = _joystick.getRawButton(8);
+    boolean aButton = _joystick.getRawButton(2);
+    if (aButton){
+      _victor1.set(ControlMode.PercentOutput,(stick1 > 0 ? -stick1 : stick1 < 0 ? stick1 :0.0));
+      _victor3.set(ControlMode.PercentOutput,(stick1 > 0 ? stick1 : stick1 < 0 ? -stick1 :0.0));
 
+    } else {
+    
     double leftPower = (rightTrigger ? 0.25 : leftTrigger ? -0.25 : 0.0);
     double rightPower = leftPower;
     
@@ -46,10 +52,10 @@ public class ArcadeDrive extends SubsystemBase {
         rightPower -= stick1/2.0;
       } 
     }
-    
+  
     _victor1.set(ControlMode.PercentOutput, leftPower);
     _victor3.set(ControlMode.PercentOutput, -rightPower);
- 
+  } 
   }
 
   @Override
