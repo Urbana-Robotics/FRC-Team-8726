@@ -21,6 +21,7 @@ public class ArcadeDrive extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    //getting trigger and joystick values
     double stick1 = _joystick.getRawAxis(0)/4.0;
 
     boolean leftTrigger = _joystick.getRawButton(7);
@@ -39,9 +40,17 @@ public class ArcadeDrive extends SubsystemBase {
 
     } else {
     
+
+    //setting left and right motor powers based on which trigger was pushed
     double leftPower = (rightTrigger ? 0.25 : leftTrigger ? -0.25 : 0.0);
     double rightPower = leftPower;
     
+    /*
+    either increaseing or decreasing left and right motor powers based on 
+    how much joystick was pushed to the left or right. 2 seperate if statments
+    since steering was inverted while driving backwards. 
+    Differential Driving
+    */
     if(leftTrigger) {
       if (stick1 > 0) {
         leftPower -= stick1/2.0;
@@ -59,10 +68,11 @@ public class ArcadeDrive extends SubsystemBase {
         rightPower -= stick1/2.0;
       } 
     }
-  
+    
+    //setting motor powers
     _victor1.set(ControlMode.PercentOutput, leftPower);
     _victor3.set(ControlMode.PercentOutput, -rightPower);
-  } 
+ 
   }
 
   @Override
