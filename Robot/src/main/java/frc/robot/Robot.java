@@ -28,7 +28,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    ArcadeDrive drivetrain = new ArcadeDrive(); //Should probably be moved to teleop init
+    ArcadeDrive drivetrain = new ArcadeDrive();
     // TankDrive drivetrain = new TankDrive();
   }
 
@@ -60,7 +60,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-    AutoTesting auto = new AutoTesting();
+
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
