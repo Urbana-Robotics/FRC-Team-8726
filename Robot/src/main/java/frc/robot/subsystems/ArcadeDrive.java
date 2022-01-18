@@ -14,8 +14,8 @@ public class ArcadeDrive extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
   public ArcadeDrive() {}
 
-  VictorSPX _victor1 = new VictorSPX(1);
-  VictorSPX _victor3 = new VictorSPX(3);
+  VictorSPX victorLeft = new VictorSPX(1);
+  VictorSPX victorRight = new VictorSPX(3);
   Joystick _joystick = new Joystick(0);
 
   @Override
@@ -33,17 +33,17 @@ public class ArcadeDrive extends SubsystemBase {
     double rightPower = leftPower;
 
     if (aButton){
-      _victor1.set(ControlMode.PercentOutput, -0.25);
-      _victor3.set(ControlMode.PercentOutput, 0.25);
+      victorLeft.set(ControlMode.PercentOutput, -0.25);
+      victorRight.set(ControlMode.PercentOutput, 0.25);
 
-      // _victor1.set(ControlMode.PercentOutput,(stick1 > 0 ? -stick1 : stick1 < 0 ? stick1 :0.0));
-      // _victor3.set(ControlMode.PercentOutput,(stick1 > 0 ? stick1 : stick1 < 0 ? -stick1 :0.0));
+      // victorLeft.set(ControlMode.PercentOutput,(stick1 > 0 ? -stick1 : stick1 < 0 ? stick1 :0.0));
+      // victorRight.set(ControlMode.PercentOutput,(stick1 > 0 ? stick1 : stick1 < 0 ? -stick1 :0.0));
       // if (stick1 > 0){
-      //   _victor1.set(ControlMode.PercentOutput,-0.25);
-      //   _victor3.set(ControlMode.PercentOutput,0.25);
+      //   victorLeft.set(ControlMode.PercentOutput,-0.25);
+      //   victorRight.set(ControlMode.PercentOutput,0.25);
       // } else if (stick1 < 0){
-      //   _victor1.set(ControlMode.PercentOutput,0.25);
-      //   _victor3.set(ControlMode.PercentOutput,-0.25);
+      //   victorLeft.set(ControlMode.PercentOutput,0.25);
+      //   victorRight.set(ControlMode.PercentOutput,-0.25);
       // }
     } else if(leftTrigger) {
       /*
@@ -70,8 +70,8 @@ public class ArcadeDrive extends SubsystemBase {
     }
     
     //setting motor powers
-    _victor1.set(ControlMode.PercentOutput, leftPower);
-    _victor3.set(ControlMode.PercentOutput, -rightPower);
+    victorLeft.set(ControlMode.PercentOutput, leftPower);
+    victorRight.set(ControlMode.PercentOutput, -rightPower);
  
   }
 

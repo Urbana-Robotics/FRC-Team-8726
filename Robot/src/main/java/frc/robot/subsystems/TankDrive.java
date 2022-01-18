@@ -5,8 +5,8 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class TankDrive extends SubsystemBase {
-    VictorSPX _victor1 = new VictorSPX(1);
-    VictorSPX _victor3 = new VictorSPX(3);
+    VictorSPX victorRight = new VictorSPX(3);
+    VictorSPX victorLeft = new VictorSPX(1);
     Joystick _joystick = new Joystick(0);
     public TankDrive(){
         
@@ -15,11 +15,11 @@ public class TankDrive extends SubsystemBase {
     @Override
     public void periodic() {
      // This method will be called once per scheduler run
-        double stick1 = _joystick.getRawAxis(1);// left y?
-        double stick0 = _joystick.getRawAxis(2);// left x? 3 right x+y
+        double leftY = _joystick.getRawAxis(1);// left y?
+        double rightY = _joystick.getRawAxis(3);// left x? 3 right x+y
 
-        _victor1.set(ControlMode.PercentOutput, stick0/-1.5);//offset should reduce speed
-        _victor3.set(ControlMode.PercentOutput, stick1/1.5);
+        victorRight.set(ControlMode.PercentOutput, rightY/1.5);//offset should reduce speed
+        victorLeft.set(ControlMode.PercentOutput, leftY/-1.5);
     }
 
     @Override
