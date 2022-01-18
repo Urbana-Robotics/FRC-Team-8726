@@ -40,6 +40,7 @@ public class ArcadeDrive extends SubsystemBase {
 
     } else {
     
+    }
 
     //setting left and right motor powers based on which trigger was pushed
     double leftPower = (rightTrigger ? 0.25 : leftTrigger ? -0.25 : 0.0);
