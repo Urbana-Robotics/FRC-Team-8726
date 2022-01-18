@@ -26,7 +26,7 @@ public class ArcadeDrive extends SubsystemBase {
 
     boolean leftTrigger = _joystick.getRawButton(7);
     boolean rightTrigger = _joystick.getRawButton(8);
-    boolean aButton = _joystick.getRawButton(2);
+    boolean aButton = _joystick.getRawButton(1);
 
     //setting left and right motor powers based on which trigger was pushed
     double leftPower = (rightTrigger ? 0.25 : leftTrigger ? -0.25 : 0.0);
