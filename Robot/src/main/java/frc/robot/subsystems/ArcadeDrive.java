@@ -26,27 +26,12 @@ public class ArcadeDrive extends SubsystemBase {
 
     boolean leftTrigger = _joystick.getRawButton(7);
     boolean rightTrigger = _joystick.getRawButton(8);
-    boolean aButton = _joystick.getRawButton(1);
 
     //setting left and right motor powers based on which trigger was pushed
     double leftPower = (rightTrigger ? 0.25 : leftTrigger ? -0.25 : 0.0);
     double rightPower = leftPower;
 
-    if (aButton){
-
-      leftPower = 0.25;
-      rightPower = -0.25;
-
-      // victorLeft.set(ControlMode.PercentOutput,(stick1 > 0 ? -stick1 : stick1 < 0 ? stick1 :0.0));
-      // victorRight.set(ControlMode.PercentOutput,(stick1 > 0 ? stick1 : stick1 < 0 ? -stick1 :0.0));
-      // if (stick1 > 0){
-      //   victorLeft.set(ControlMode.PercentOutput,-0.25);
-      //   victorRight.set(ControlMode.PercentOutput,0.25);
-      // } else if (stick1 < 0){
-      //   victorLeft.set(ControlMode.PercentOutput,0.25);
-      //   victorRight.set(ControlMode.PercentOutput,-0.25);
-      // }
-    } else if(leftTrigger) {
+    if(leftTrigger) {
       /*
       either increaseing or decreasing left and right motor powers based on 
       how much joystick was pushed to the left or right. 2 seperate if statments
