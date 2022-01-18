@@ -33,7 +33,7 @@ public class ArcadeDrive extends SubsystemBase {
     double rightPower = leftPower;
 
     if (aButton){
-      victorLeft.set(ControlMode.PercentOutput, -0.25);
+      victorLeft.set(ControlMode.PercentOutput, 0.25);
       victorRight.set(ControlMode.PercentOutput, 0.25);
 
       // victorLeft.set(ControlMode.PercentOutput,(stick1 > 0 ? -stick1 : stick1 < 0 ? stick1 :0.0));
