@@ -28,8 +28,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    ArcadeDrive drivetrain = new ArcadeDrive();
-    // TankDrive drivetrain = new TankDrive();
+
   }
 
   /**
@@ -80,6 +79,9 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+
+    ArcadeDrive drivetrain = new ArcadeDrive();
+    // TankDrive drivetrain = new TankDrive();
   }
 
   /** This function is called periodically during operator control. */

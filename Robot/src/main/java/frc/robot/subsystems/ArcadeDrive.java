@@ -22,13 +22,13 @@ public class ArcadeDrive extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     //getting trigger and joystick values
-    double stick1 = _joystick.getRawAxis(0)/4.0;
+    double stick1 = _joystick.getRawAxis(0)/2.0;
 
     boolean leftTrigger = _joystick.getRawButton(7);
     boolean rightTrigger = _joystick.getRawButton(8);
 
     //setting left and right motor powers based on which trigger was pushed
-    double leftPower = (rightTrigger ? 0.25 : leftTrigger ? -0.25 : 0.0);
+    double leftPower = (rightTrigger ? 0.5 : leftTrigger ? -0.5 : 0.0);
     double rightPower = leftPower;
 
     if(leftTrigger) {
