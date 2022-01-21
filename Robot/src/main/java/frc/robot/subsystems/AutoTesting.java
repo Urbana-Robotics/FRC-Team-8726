@@ -2,8 +2,6 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-//import com.kauailabs.navx.frc.AHRS;
-import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
 
 
@@ -21,26 +19,22 @@ public class AutoTesting extends SubsystemBase{
 
   VictorSPX victorRight = new VictorSPX(3);
   VictorSPX victorLeft = new VictorSPX(1);
-  //AHRS gyro = new AHRS(SPI.Port.kMXP); //may be moved into sensors class
-  boolean isDriving = true;
-  int timeDriven = 0;
 
-  
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    boolean check = timer.hasElapsed(5);
+    boolean check = timer.hasElapsed(2);
     if (check){
-      isDriving = false;
+      victorRight.set(ControlMode.PercentOutput, 0);
+      victorLeft.set(ControlMode.PercentOutput, 0);
       }
     else{
-        isDriving = true;
+      victorRight.set(ControlMode.PercentOutput, -0.45);
+      victorLeft.set(ControlMode.PercentOutput, 0.45);
       }
 
-    if (isDriving){
-    victorRight.set(ControlMode.PercentOutput, -0.45);
-    victorLeft.set(ControlMode.PercentOutput, 0.45);
-    }
+    
     
   }
 
