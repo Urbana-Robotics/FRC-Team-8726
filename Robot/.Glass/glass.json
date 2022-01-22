@@ -17,7 +17,9 @@
     },
     "types": {
       "/FMSInfo": "FMSInfo",
+      "/LiveWindow/DriveTrainSystem": "Subsystem",
       "/LiveWindow/ExampleSubsystem": "Subsystem",
+      "/LiveWindow/GlassNetworkTables": "Subsystem",
       "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
       "/LiveWindow/Ungrouped/navX-Sensor[4]": "Gyro"
     },
@@ -37,12 +39,20 @@
     "Plot <0>": {
       "plots": [
         {
-          "height": 332
+          "height": 332,
+          "series": [
+            {
+              "color": [
+                0.2980392277240753,
+                0.44705885648727417,
+                0.6901960968971252,
+                1.0
+              ],
+              "id": "NT:/glassSensors/GyroAngle"
+            }
+          ]
         }
-      ],
-      "window": {
-        "visible": false
-      }
+      ]
     }
   }
 }

@@ -9,6 +9,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
 
+
+
 import edu.wpi.first.wpilibj.Timer;
 import frc.robot.subsystems.Sensors;
 
@@ -16,9 +18,13 @@ public class SimpleAuto extends CommandBase {
   /** Creates a new SimpleAuto. */
   Timer timer;
   VictorSPX victorRight = new VictorSPX(3);
+  
   VictorSPX victorLeft = new VictorSPX(1);
   AHRS gyro = Sensors.getGyro();
   double startAngle;
+  double currentAngle;
+  double rightPower = 0.25;
+  double leftPower = 0.25;
   public SimpleAuto() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -27,26 +33,47 @@ public class SimpleAuto extends CommandBase {
   @Override
   public void initialize() {
     timer = new Timer();
+    victorRight.setInverted(true);
+    victorLeft.setInverted(false);
     timer.start();
     gyro.reset();
+    gyro.calibrate();
     startAngle = gyro.getAngle();
+    startAngle = 0.0;
+    System.out.println(startAngle);
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double currentAngle = gyro.getAngle()-((int)gyro.getAngle()/360*360);
-    victorRight.set(ControlMode.PercentOutput, -0.25);
-    victorLeft.set(ControlMode.PercentOutput, 0.25);
-    if (timer.get() >= 2) {
-      if (currentAngle <= startAngle+5 && currentAngle >= startAngle-5){
-        victorRight.set(ControlMode.PercentOutput, 0.25);
-        victorLeft.set(ControlMode.PercentOutput, 0.25);
-      } else {
-      victorRight.set(ControlMode.PercentOutput, 0);
-      victorLeft.set(ControlMode.PercentOutput, 0);
-      }
-    }
+    
+    // currentAngle = gyro.getAngle()%360;
+
+    currentAngle = gyro.getPitch();
+
+    System.out.println(Math.round(currentAngle));
+
+    // victorRight.set(ControlMode.PercentOutput, -rightPower);
+    // victorLeft.set(ControlMode.PercentOutput, leftPower);
+
+
+
+    // if (currentAngle > 5) {
+    //   rightPower += 0.1;
+    //   leftPower -= 0.1;
+    // } else if (currentAngle < -5) {
+    //   rightPower -= 0.1;
+    //   leftPower += 0.1;
+    // } else {
+    //   rightPower = 0.25;
+    //   leftPower = 0.25;
+    // }
+    // // System.out.println(currentAngle);
+
+    // victorRight.set(ControlMode.PercentOutput, rightPower);
+    // victorLeft.set(ControlMode.PercentOutput, leftPower);
+    
   }
 
   // Called once the command ends or is interrupted.
@@ -58,4 +85,32 @@ public class SimpleAuto extends CommandBase {
   public boolean isFinished() {
     return false;
   }
+
+  public void turnAndCorrect(){
+    if (timer.get() >= 2) {
+      if (Math.abs(startAngle-currentAngle)>5){
+        victorRight.set(ControlMode.PercentOutput, -0.25);
+        victorLeft.set(ControlMode.PercentOutput, 0.25);
+        
+      } else {
+        victorRight.set(ControlMode.PercentOutput, 0);
+        victorLeft.set(ControlMode.PercentOutput, 0);
+      }
+    } else {
+      victorRight.set(ControlMode.PercentOutput, -0.35);
+      victorLeft.set(ControlMode.PercentOutput, 0.35);
+    }
+  }
+
+  
+  public void correctStraight(){
+    /*double rightPower = 0.35;
+    double leftPower = 0.35;
+    if (currentAngle > startAngle + 5) {
+      
+    } else if (currentAngle < startAngle - 5) {
+
+    }*/
+  }
+  
 }
