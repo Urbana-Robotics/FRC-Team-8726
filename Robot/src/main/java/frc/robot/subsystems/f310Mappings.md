@@ -3,14 +3,14 @@
 ## Joystick getRawButton
 |Button|Index|
 |---|---|
-|RT|8|
-|LT|7|
-|RB|6|
-|LB|5|
 |X|1|
 |A|2|
 |B|3|
 |Y|4|
+|LB|5|
+|RB|6|
+|LT|7|
+|RT|8|
 |Back|9|
 |Start|10|
 |Left Joystick|11|
