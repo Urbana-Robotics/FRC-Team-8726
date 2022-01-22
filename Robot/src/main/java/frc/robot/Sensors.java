@@ -13,8 +13,4 @@ public class Sensors {
     public AHRS getGyro(){
         return gyro;
     }
-    
 }
-
-
-
