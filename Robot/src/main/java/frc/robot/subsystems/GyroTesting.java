@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.Joystick;
-import frc.robot.Sensors;
+import frc.robot.subsystems.Sensors;
 
 
 public class GyroTesting extends SubsystemBase {
