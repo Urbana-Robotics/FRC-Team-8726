@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 // NavX Docs: https://www.kauailabs.com/public_files/navx-mxp/apidocs/java/com/kauailabs/navx/frc/package-summary.html
 public class Sensors extends SubsystemBase {
     public Sensors(){}
-    private AHRS gyro = new AHRS(SPI.Port.kMXP);
+    private static AHRS gyro = new AHRS(SPI.Port.kMXP);
 
-    public AHRS getGyro(){
+    public static AHRS getGyro(){
         return gyro;
     }
    
