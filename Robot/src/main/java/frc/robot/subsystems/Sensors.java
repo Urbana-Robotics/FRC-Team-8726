@@ -14,7 +14,7 @@ public class Sensors extends SubsystemBase {
     public AHRS getGyro(){
         return gyro;
     }
-    
+   
     @Override
     public void periodic() {
       // This method will be called once per scheduler run
@@ -24,7 +24,5 @@ public class Sensors extends SubsystemBase {
     public void simulationPeriodic() {
       // This method will be called once per scheduler run during simulation
     }
+
 }
-
-
-
