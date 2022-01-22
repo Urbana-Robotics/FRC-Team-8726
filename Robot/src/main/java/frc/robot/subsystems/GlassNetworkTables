@@ -1,0 +1,40 @@
+package frc.robot.subsystems;
+
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import frc.robot.subsystems.Sensors;
+
+public class GlassNetworkTables extends SubsystemBase {
+  NetworkTableEntry gyroAngle;
+  NetworkTableEntry xAccel;
+  NetworkTableEntry yAccel;
+  NetworkTableEntry zAccel;
+
+  AHRS gyro = Sensors.getGyro();
+  public GlassNetworkTables() {
+    NetworkTableInstance instance = NetworkTableInstance.getDefault();
+    NetworkTable table = inst.getTable("glassSensors");
+    gyroAngle = table.getEntry("GyroAngle");
+    xAccel = table.getEntry("XAccel");
+    yAccel = table.getEntry("yAccel");
+    zAccel = table.getEntry("zAccel");
+  }
+
+  @Override
+  public void periodic() {
+    // This method will be called once per scheduler run
+    gyroAngle.setNumber(new Number(gyro.getAngle()));
+    xAccel.setNumber(new Number(gyro.getRawAccelX()));
+    yAccel.setNumber(new Number(gyro.getRawAccelY()));
+    zAccel.setNumber(new Number(gyro.getRawAccelZ()));
+
+    
+  }
+
+  @Override
+  public void simulationPeriodic() {
+    // This method will be called once per scheduler run during simulation
+  }
+}
