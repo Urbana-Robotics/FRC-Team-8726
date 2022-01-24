@@ -6,13 +6,20 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.Constants;
 
 public class ArcadeDrive extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
+
   public ArcadeDrive() {
     // 
   }
+  
+  VictorSPX victorLeft = new VictorSPX(Constants.LEFT_MOTOR);
+  VictorSPX victorRight = new VictorSPX(Constants.LEFT_MOTOR);
+  Joystick joystick = new Joystick(Constants.LEFT_X);
 
   @Override
   public void periodic() {
@@ -20,8 +27,14 @@ public class ArcadeDrive extends SubsystemBase {
     //getting trigger and joystick values
 
     //setting left and right motor powers based on which trigger was pushed
-    double temp = (Constants.leftTrigger ? -0.5 : 0.0);
-    double leftPower = (Constants.rightTrigger ? 0.5 : temp);
+
+    boolean leftTrigger = joystick.getRawButton(Constants.LEFT_TRIGGER);
+    boolean rightTrigger = joystick.getRawButton(Constants.RIGHT_TRIGGER);
+
+    double leftX = joystick.getRawAxis(Constants.LEFT_X);
+
+    double temp = (leftTrigger ? -0.5 : 0.0);
+    double leftPower = (rightTrigger ? 0.5 : temp);
     double rightPower = leftPower;
 
 
@@ -31,21 +44,21 @@ public class ArcadeDrive extends SubsystemBase {
       since steering was inverted while driving backwards. 
       Differential Driving
     */
-    if(Constants.leftTrigger) {
-      if (Constants.stick1 > 0) {
-        leftPower -= Constants.stick1/4.0;
-        rightPower += Constants.stick1/4.0;
+    if(leftTrigger) {
+      if (leftX > 0) {
+        leftPower -= leftX/4.0;
+        rightPower += leftX/4.0;
       }  
     } else {
-      if (Constants.stick1 > 0) {
-        leftPower += Constants.stick1/4.0;
-        rightPower -= Constants.stick1/4.0;
+      if (leftX > 0) {
+        leftPower += leftX/4.0;
+        rightPower -= leftX/4.0;
       }
     }
     
     //setting motor powers
-    Constants.victorLeft.set(ControlMode.PercentOutput, leftPower);
-    Constants.victorRight.set(ControlMode.PercentOutput, -rightPower);
+    victorLeft.set(ControlMode.PercentOutput, leftPower);
+    victorRight.set(ControlMode.PercentOutput, -rightPower);
  
   }
 
