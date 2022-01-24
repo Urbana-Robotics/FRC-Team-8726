@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import edu.wpi.first.wpilibj.Joystick;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -12,4 +15,14 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {}
+public final class Constants {
+    public static final VictorSPX victorLeft = new VictorSPX(1);
+    public static final VictorSPX victorRight = new VictorSPX(3);
+    public static final Joystick _joystick = new Joystick(0);
+    public static final double stick1 = _joystick.getRawAxis(0);
+    public static final double leftY = _joystick.getRawAxis(1);
+    public static final double rightY = _joystick.getRawAxis(3);
+    public static final boolean leftTrigger = _joystick.getRawButton(7);
+    public static final boolean rightTrigger = _joystick.getRawButton(8);
+
+}
