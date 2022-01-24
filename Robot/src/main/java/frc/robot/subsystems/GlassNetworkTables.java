@@ -21,7 +21,7 @@ public class GlassNetworkTables extends SubsystemBase {
   public GlassNetworkTables() {
     NetworkTableInstance instance = NetworkTableInstance.getDefault();
     NetworkTable table = instance.getTable("glassSensors");
-    gyroAngle = table.getEntry("GyroPitch");
+    gyroAngle = table.getEntry("GyroAngle");
     xGyro = table.getEntry("XGyro");
     yGyro = table.getEntry("yGyro");
     zGyro = table.getEntry("zGyro");
@@ -32,7 +32,7 @@ public class GlassNetworkTables extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    gyroAngle.setNumber(gyro.getPitch());
+    gyroAngle.setNumber(Sensors.gyroZAngle());
     //System.out.println(gyro.getAngle());
     xGyro.setNumber(gyro.getRawGyroX());
     ///System.out.println(gyro.getRawGyroX());

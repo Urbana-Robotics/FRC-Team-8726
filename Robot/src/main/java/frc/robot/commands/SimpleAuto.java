@@ -50,7 +50,7 @@ public class SimpleAuto extends CommandBase {
     
     // currentAngle = gyro.getAngle()%360;
 
-    currentAngle = gyro.getPitch();
+    currentAngle = Sensors.gyroZAngle();
 
     System.out.println(Math.round(currentAngle));
 
