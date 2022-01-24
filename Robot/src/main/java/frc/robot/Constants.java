@@ -18,11 +18,11 @@ import edu.wpi.first.wpilibj.Joystick;
 public final class Constants {
     public static final VictorSPX victorLeft = new VictorSPX(1);
     public static final VictorSPX victorRight = new VictorSPX(3);
-    public static final Joystick _joystick = new Joystick(0);
-    public static final double stick1 = _joystick.getRawAxis(0);
-    public static final double leftY = _joystick.getRawAxis(1);
-    public static final double rightY = _joystick.getRawAxis(3);
-    public static final boolean leftTrigger = _joystick.getRawButton(7);
-    public static final boolean rightTrigger = _joystick.getRawButton(8);
+    public static final Joystick joystick = new Joystick(0);
+    public static final double stick1 = joystick.getRawAxis(0);
+    public static final double leftY = joystick.getRawAxis(1);
+    public static final double rightY = joystick.getRawAxis(3);
+    public static final boolean leftTrigger = joystick.getRawButton(7);
+    public static final boolean rightTrigger = joystick.getRawButton(8);
 
 }

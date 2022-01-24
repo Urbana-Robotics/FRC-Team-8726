@@ -28,7 +28,7 @@ public class Sensors extends SubsystemBase {
     // This method will be called once per scheduler run
     currentZAngle += (timer.get()-prevTime)*gyro.getRawGyroZ();
     prevTime = timer.get();
-    currentZAngle %=360;
+    currentZAngle %= 360;
   }
 
     @Override
