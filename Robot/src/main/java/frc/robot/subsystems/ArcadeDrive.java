@@ -20,7 +20,8 @@ public class ArcadeDrive extends SubsystemBase {
     //getting trigger and joystick values
 
     //setting left and right motor powers based on which trigger was pushed
-    double leftPower = (Constants.rightTrigger ? 0.5 : Constants.leftTrigger ? -0.5 : 0.0);
+    double temp = (Constants.leftTrigger ? -0.5 : 0.0);
+    double leftPower = (Constants.rightTrigger ? 0.5 : temp);
     double rightPower = leftPower;
 
 
