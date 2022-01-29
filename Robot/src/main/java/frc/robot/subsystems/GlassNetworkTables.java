@@ -2,7 +2,8 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import com.kauailabs.navx.frc.AHRS;
+//import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -17,7 +18,7 @@ public class GlassNetworkTables extends SubsystemBase {
   NetworkTableEntry zGyro;
   Joystick _joystick = new Joystick(0);
   
-  AHRS gyro = Sensors.getGyro();
+ ADXRS450_Gyro gyro = Sensors.getGyro();
   public GlassNetworkTables() {
     NetworkTableInstance instance = NetworkTableInstance.getDefault();
     NetworkTable table = instance.getTable("glassSensors");
@@ -32,13 +33,13 @@ public class GlassNetworkTables extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    gyroAngle.setNumber(Sensors.gyroZAngle());
+    gyroAngle.setNumber(Sensors.gyroAngle());
     //System.out.println(gyro.getAngle());
-    xGyro.setNumber(gyro.getRawGyroX());
+    //xGyro.setNumber(gyro.getRawGyroX());
     ///System.out.println(gyro.getRawGyroX());
-    yGyro.setNumber(gyro.getRawGyroY());
+    //yGyro.setNumber(gyro.getRawGyroY());
     //System.out.println(gyro.getRawGyroY());
-    zGyro.setNumber(gyro.getRawGyroZ());
+    //zGyro.setNumber(gyro.getRawGyroZ());
     //System.out.println(gyro.getRawGyroZ());
    // System.out.println(_joystick.getRawAxis(0)/2.0);
     //System.out.println("----------");

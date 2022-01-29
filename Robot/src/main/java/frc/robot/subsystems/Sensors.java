@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
-import com.kauailabs.navx.frc.AHRS;
+//import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Timer;
@@ -15,28 +16,24 @@ public class Sensors extends SubsystemBase {
     timer.start(); 
   }
   
-  private static AHRS gyro = new AHRS(SPI.Port.kMXP);
-  private static double currentZAngle = 0.0;
+  private static ADXRS450_Gyro gyro = new ADXRS450_Gyro(SPI.Port.kMXP);
   double prevTime = 0.0;
     
-  public static AHRS getGyro(){
+  public static ADXRS450_Gyro getGyro(){
       return gyro;
   }
     
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    currentZAngle += (timer.get()-prevTime)*gyro.getRawGyroZ();
-    prevTime = timer.get();
-    currentZAngle %= 360;
   }
 
     @Override
     public void simulationPeriodic() {
       // This method will be called once per scheduler run during simulation
     }
-    public static double gyroZAngle(){
-      return currentZAngle;
+    public static double gyroAngle(){
+      return gyro.getAngle();
     }
 
 }
