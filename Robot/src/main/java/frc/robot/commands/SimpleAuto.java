@@ -7,7 +7,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import com.kauailabs.navx.frc.AHRS;
+//import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 
 
 
@@ -20,7 +21,7 @@ public class SimpleAuto extends CommandBase {
   VictorSPX victorRight = new VictorSPX(3);
   
   VictorSPX victorLeft = new VictorSPX(1);
-  AHRS gyro = Sensors.getGyro();
+  ADXRS450_Gyro gyro = Sensors.getGyro();
   double startAngle;
   double currentAngle;
   double rightPower = 0.25;
@@ -50,7 +51,7 @@ public class SimpleAuto extends CommandBase {
     
     // currentAngle = gyro.getAngle()%360;
 
-    currentAngle = Sensors.gyroZAngle();
+    currentAngle = Sensors.gyroAngle();
 
     System.out.println(Math.round(currentAngle));
     correctStraight(currentAngle);
