@@ -4,13 +4,19 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.SimpleAuto;
+import frc.robot.commands.TankDriveCommand;
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -21,10 +27,16 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final SimpleAuto m_simpleAutoCommand = new SimpleAuto();
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+
+  private final DriveTrain 
+  m_driveTrain = new DriveTrain();
+  private final Joystick m_joystick = new Joystick(0);
+
+  private final TankDriveCommand m_tankdrive = new TankDriveCommand(m_driveTrain, m_joystick);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    CommandScheduler.getInstance().setDefaultCommand(m_driveTrain, m_tankdrive);
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -46,6 +58,5 @@ public class RobotContainer {
     // An ExampleCommand will run in autonomous
     return m_simpleAutoCommand;
   }
-
   
 }

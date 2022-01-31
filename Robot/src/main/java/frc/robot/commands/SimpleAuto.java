@@ -53,6 +53,7 @@ public class SimpleAuto extends CommandBase {
     currentAngle = Sensors.gyroZAngle();
 
     System.out.println(Math.round(currentAngle));
+    correctStraight(currentAngle);
 
     // victorRight.set(ControlMode.PercentOutput, -rightPower);
     // victorLeft.set(ControlMode.PercentOutput, leftPower);
@@ -103,14 +104,17 @@ public class SimpleAuto extends CommandBase {
   }
 
   
-  public void correctStraight(){
-    /*double rightPower = 0.35;
-    double leftPower = 0.35;
-    if (currentAngle > startAngle + 5) {
-      
-    } else if (currentAngle < startAngle - 5) {
-
-    }*/
+  public void correctStraight(double currAngle){
+    double currPowerLeft = 0.25;
+    double currPowerRight = 0.25;
+    if(currAngle > 0 && currAngle < 180){
+      currPowerRight += currAngle * 0.01;
+    }
+    else{
+      currPowerLeft += currAngle * 0.01;
+    }
+    victorRight.set(ControlMode.PercentOutput, currPowerRight);
+    victorLeft.set(ControlMode.PercentOutput, currPowerLeft);
   }
   
 }

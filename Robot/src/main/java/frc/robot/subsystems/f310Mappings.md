@@ -3,9 +3,9 @@
 ## Joystick getRawButton
 |Button|Index|
 |---|---|
-|X|1|
-|A|2|
-|B|3|
+|A|1|
+|B|2|
+|X|3|
 |Y|4|
 |LB|5|
 |RB|6|
@@ -21,5 +21,5 @@
 |---|---|
 |Left X|0|
 |Left Y|1|
-|Right X|2|
-|Right Y|3|
+|Right X|4|
+|Right Y|5|
