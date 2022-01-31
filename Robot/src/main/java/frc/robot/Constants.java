@@ -13,17 +13,19 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final int RevOuterLeft = 11;
-    public static final int RevInnerLeft = 12;
-    public static final int RevInnerRight = 13;
-    public static final int RevOuterRight = 14;
+    public static final int REV_OUTER_LEFT = 11;
+    public static final int REV_INNER_LEFT = 12;
+    public static final int REV_INNER_RIGHT = 13;
+    public static final int REV_OUTER_RIGHT = 14;
 
+    //Deprecated VictorSPX Motors
     public static final int LEFT_MOTOR = 1;
     public static final int RIGHT_MOTOR = 3;
+    //
     public static final int LEFT_X = 0;
     public static final int LEFT_Y = 1;
-    public static final int RIGHT_X = 2;
-    public static final int RIGHT_Y = 3;
+    public static final int RIGHT_X = 4;
+    public static final int RIGHT_Y = 5;
     public static final int X_BUTTON = 1;
     public static final int Y_BUTTON = 2;
     public static final int B_BUTTON = 3;
