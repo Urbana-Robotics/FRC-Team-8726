@@ -16,7 +16,7 @@ public class Sensors extends SubsystemBase {
     timer.start(); 
   }
   
-  private static ADXRS450_Gyro gyro = new ADXRS450_Gyro(SPI.Port.kMXP);
+  private static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
   double prevTime = 0.0;
     
   public static ADXRS450_Gyro getGyro(){
