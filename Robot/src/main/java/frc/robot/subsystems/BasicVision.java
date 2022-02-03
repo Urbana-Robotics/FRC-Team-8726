@@ -5,7 +5,6 @@ import edu.wpi.first.cscore.CvSink;
 import edu.wpi.first.cscore.CvSource;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import org.opencv.imgproc.Imgproc;
-import org.opencv.videoio.VideoCapture;
 
 import java.util.List;
 
@@ -46,6 +45,7 @@ public class BasicVision extends SubsystemBase {
     }
     @Override
     public void periodic() {
+        
         sink1.grabFrame(currentFrameRaw);
         Imgproc.cvtColor(currentFrameProc, currentFrameProc, Imgproc.COLOR_BGR2HSV);
         Core.inRange(currentFrameProc, blueLow, blueUp, blueMask);//TODO: tune color ranges and add red
@@ -54,23 +54,26 @@ public class BasicVision extends SubsystemBase {
         Imgproc.dilate(blueMask,blueMask,new Mat(),new Point(-1,-1),2);
         Imgproc.findContours(blueMask, contours, hierarchy,Imgproc.RETR_EXTERNAL , Imgproc.CHAIN_APPROX_SIMPLE);
         annotatedFrame = currentFrameProc.clone();
+        
         for (int i = 0;i<contours.size();i++){
             MatOfPoint2f contour = new MatOfPoint2f(contours.get(i).toArray());
             RotatedRect ellipse = Imgproc.fitEllipse(contour);
             double eccentricity = Math.sqrt(1-(Math.pow((ellipse.size.width/2),2) / Math.pow((ellipse.size.height/2),2)));
+            
             if (eccentricity < 0.65){ // should be a ball
                 float[] radius=new float[1];
                 Point circleCenter=new Point();//might use moments for more accurate center
                 Imgproc.minEnclosingCircle(contour, circleCenter,radius); 
+               
                 if (Imgproc.contourArea(contour) >= 0.7*3.141*(Math.pow(radius[0],2))){
                     color = green;
                 } else {
                     color = yellow;
                 }
+                
                 Imgproc.circle(annotatedFrame, circleCenter, (int) radius[0],color);
                 maskedBlue.putFrame(annotatedFrame);
                 
-
                 
             }
         }
