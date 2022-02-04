@@ -38,6 +38,7 @@ public class RobotContainer {
   
   AnalogGyro gyro = new AnalogGyro(1);
   private final GlassNetworkTables m_networkTables = new GlassNetworkTables(gyro);
+  private final BasicVision m_basicVision = new BasicVision();
   private final SimpleAuto m_simpleAutoCommand = new SimpleAuto(m_driveTrain, gyro);
   private final ADCommand DiffDriveArcadeDrive = new ADCommand(m_driveTrain, m_joystick);
 
