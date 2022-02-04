@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.SimpleAuto;
 import frc.robot.commands.TankDriveCommand;
 import frc.robot.subsystems.BasicVision;
-
+import edu.wpi.first.wpilibj.AnalogGyro;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -35,8 +35,10 @@ public class RobotContainer {
   m_driveTrain = new DriveTrain();
   private final Joystick m_joystick = new Joystick(0);
   private final GlassNetworkTables m_networkTables = new GlassNetworkTables();
-  private final SimpleAuto m_simpleAutoCommand = new SimpleAuto(m_driveTrain);
+  AnalogGyro gyro = new AnalogGyro(1);
+  private final SimpleAuto m_simpleAutoCommand = new SimpleAuto(m_driveTrain, gyro);
   private final TankDriveCommand m_tankdrive = new TankDriveCommand(m_driveTrain, m_joystick);
+  // private final ArcadeDriveCommand m_arcadedrive = new ArcadeDriveCommand(m_driveTrain, m_joystick);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {

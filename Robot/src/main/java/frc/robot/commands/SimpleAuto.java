@@ -14,7 +14,7 @@ public class SimpleAuto extends CommandBase {
   DriveTrain dt;
   Timer timer;
 
-  AnalogGyro gyro = new AnalogGyro(1);
+  AnalogGyro gyro;
 
   double currentAngle;
   double errorRate;
@@ -22,7 +22,8 @@ public class SimpleAuto extends CommandBase {
   double rightPower = 0.5;
   double leftPower = 0.5;
 
-  public SimpleAuto(DriveTrain dt) {
+  public SimpleAuto(DriveTrain dt, AnalogGyro gyro) {
+    this.gyro = gyro;
     this.dt = dt;
     // Use addRequirements() here to declare subsystem dependencies.
   }
