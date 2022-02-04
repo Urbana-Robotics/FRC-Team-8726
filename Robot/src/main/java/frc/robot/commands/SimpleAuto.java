@@ -19,8 +19,8 @@ public class SimpleAuto extends CommandBase {
   double currentAngle;
   double errorRate;
   double errorAngle;
-  double rightPower = 0.25;
-  double leftPower = 0.25;
+  double rightPower = 0.5;
+  double leftPower = 0.5;
 
   public SimpleAuto(DriveTrain dt) {
     this.dt = dt;
@@ -41,11 +41,11 @@ public class SimpleAuto extends CommandBase {
   @Override
   public void execute() {
     
-    // currentAngle = gyro.getAngle();
+    currentAngle = gyro.getAngle();
 
-    // System.out.println(Math.round(currentAngle));
+    System.out.println(Math.round(currentAngle));
 
-    dt.drive(leftPower, rightPower);
+    // dt.drive(leftPower/2.0, rightPower/2.0);
     
   }
 
@@ -69,7 +69,7 @@ public class SimpleAuto extends CommandBase {
   public void setHeadingInplace(double heading) { // turns to the specified angle inplace
     errorAngle = heading - gyro.getAngle();
 
-    if (errorAngle > 180.0) {
+    if (errorAngle > 180.0) { // determines whether to turn clockwise or counterclckwise
       rightPower = -rightPower;
       leftPower = -leftPower;
     }
@@ -80,7 +80,7 @@ public class SimpleAuto extends CommandBase {
   public void setHeadingArc(double heading, double turnRate) { // turns to the specified angle in an arc, turnRate is the rate at which the robot turns
     errorAngle = heading - gyro.getAngle();
 
-    if (errorAngle > 180.0) {
+    if (errorAngle > 180.0) { // determines whether to turn clockwise or counterclckwise
       turnRate = -turnRate;
     }
 
