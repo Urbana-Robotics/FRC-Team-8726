@@ -11,7 +11,6 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.Sensors;
 
 public class TankDriveCommand extends CommandBase {
   /** Creates a new SimpleAuto. */
