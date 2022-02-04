@@ -6,14 +6,12 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-//import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Timer;
 
-
 public class SimpleAuto extends CommandBase {
   /** Creates a new SimpleAuto. */
-  DriveTrain dt = new DriveTrain();
+  DriveTrain dt;
   Timer timer;
 
   AnalogGyro gyro = new AnalogGyro(1);
@@ -24,7 +22,8 @@ public class SimpleAuto extends CommandBase {
   double rightPower = 0.25;
   double leftPower = 0.25;
 
-  public SimpleAuto() {
+  public SimpleAuto(DriveTrain dt) {
+    this.dt = dt;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -42,11 +41,11 @@ public class SimpleAuto extends CommandBase {
   @Override
   public void execute() {
     
-    currentAngle = gyro.getAngle();
+    // currentAngle = gyro.getAngle();
 
-    System.out.println(Math.round(currentAngle));
+    // System.out.println(Math.round(currentAngle));
 
-    dt.drive(0.5, 0.5);
+    dt.drive(leftPower, rightPower);
     
   }
 
@@ -61,13 +60,13 @@ public class SimpleAuto extends CommandBase {
   }
 
   
-  public void driveStraight(double heading, double correctionRate){
+  public void driveStraight(double heading, double correctionRate){ // drives in a straight line
     errorRate = gyro.getRate();
 
     dt.drive(leftPower - errorRate, rightPower + errorRate);
   }
 
-  public void setHeadingInplace(double heading) {
+  public void setHeadingInplace(double heading) { // turns to the specified angle inplace
     errorAngle = heading - gyro.getAngle();
 
     if (errorAngle > 180.0) {
@@ -78,7 +77,7 @@ public class SimpleAuto extends CommandBase {
     dt.drive(leftPower * errorAngle, -rightPower * errorAngle);
   }
 
-  public void setHeadingArc(double heading, double turnRate) {
+  public void setHeadingArc(double heading, double turnRate) { // turns to the specified angle in an arc, turnRate is the rate at which the robot turns
     errorAngle = heading - gyro.getAngle();
 
     if (errorAngle > 180.0) {

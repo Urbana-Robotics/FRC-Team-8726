@@ -5,7 +5,6 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import com.fasterxml.jackson.databind.introspect.TypeResolutionContext.Basic;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
@@ -15,9 +14,12 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.SimpleAuto;
 import frc.robot.commands.TankDriveCommand;
 import frc.robot.subsystems.BasicVision;
+
+
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -27,11 +29,12 @@ import frc.robot.subsystems.BasicVision;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final SimpleAuto m_simpleAutoCommand = new SimpleAuto();
-  private final BasicVision m_basicVision = new BasicVision();
-  private final DriveTrain  m_driveTrain = new DriveTrain();
+  
+  private final DriveTrain 
+  m_driveTrain = new DriveTrain();
   private final Joystick m_joystick = new Joystick(0);
-
+  
+  private final SimpleAuto m_simpleAutoCommand = new SimpleAuto(m_driveTrain);
   private final TankDriveCommand m_tankdrive = new TankDriveCommand(m_driveTrain, m_joystick);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
