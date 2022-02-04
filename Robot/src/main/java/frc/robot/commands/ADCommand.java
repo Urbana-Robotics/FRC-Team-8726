@@ -34,7 +34,7 @@ public class ADCommand extends CommandBase {
     m_rotation = m_joystick.getRawAxis(4)/1.5;
 
 
-    m_drivesystem.drive(m_speed, m_rotation);
+    m_drivesystem.arcadeDrive(m_speed, m_rotation);
     
   }
 

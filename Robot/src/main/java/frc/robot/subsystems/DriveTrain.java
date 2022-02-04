@@ -50,7 +50,12 @@ public class DriveTrain extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
-  public void drive(double speed, double rotation){
+  public void drive(double speedLeft, double speedRight){
+    mcg_left.set(speedLeft);
+    mcg_right.set(speedRight);
+  }
+  
+  public void arcadeDrive(double speed, double rotation){
     diffdrive.arcadeDrive(speed, rotation);
   }
 
