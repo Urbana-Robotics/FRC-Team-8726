@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.GlassNetworkTables;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -33,7 +34,7 @@ public class RobotContainer {
   private final DriveTrain 
   m_driveTrain = new DriveTrain();
   private final Joystick m_joystick = new Joystick(0);
-  
+  private final GlassNetworkTables m_networkTables = new GlassNetworkTables();
   private final SimpleAuto m_simpleAutoCommand = new SimpleAuto(m_driveTrain);
   private final TankDriveCommand m_tankdrive = new TankDriveCommand(m_driveTrain, m_joystick);
 

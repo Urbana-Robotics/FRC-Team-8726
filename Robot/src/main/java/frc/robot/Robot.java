@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.*;
+import edu.wpi.first.wpilibj.AnalogGyro;
 
 
 /**
@@ -28,11 +29,11 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+    AnalogGyro gyro = new AnalogGyro(1);
     m_robotContainer = new RobotContainer();
-    new Sensors();
-    new GlassNetworkTables();
-    Sensors.getGyro().calibrate();
-    Sensors.getGyro().reset();
+    gyro.calibrate();
+    gyro.reset();
+    gyro.close();
   }
 
   /**

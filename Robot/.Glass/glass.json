@@ -1,5 +1,14 @@
 {
   "NetworkTables": {
+    "CameraPublisher": {
+      "MaskedBlue": {
+        "open": true
+      },
+      "cam1": {
+        "open": true
+      },
+      "open": true
+    },
     "LiveWindow": {
       "Ungrouped": {
         "navX-Sensor[4]": {
@@ -7,8 +16,16 @@
         }
       }
     },
+    "SmartDashboard": {
+      "DB": {
+        "open": true
+      }
+    },
     "Usage": {
       "Client": {
+        "Dashboard": {
+          "open": true
+        },
         "open": true
       }
     },
