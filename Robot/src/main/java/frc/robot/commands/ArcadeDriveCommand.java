@@ -42,12 +42,12 @@ public class ArcadeDriveCommand extends CommandBase {
 
     leftX = joystick.getRawAxis(Constants.LEFT_X);
 
-    if(leftX == 0) {
+    if(leftX == 0) { // If the left joystick is 0 (driving in a stright line) 
       errorRate = gyro.getRate();
-      if(rightTrigger) {
+      if(rightTrigger) { // changing motor speeds to ajust for drift based in rate at which robot is drifting
         leftSpeed -= errorRate;
         rightSpeed += errorRate;
-      } else if (leftTrigger) {
+      } else if (leftTrigger) { // same thing
         leftSpeed = -leftSpeed + errorRate;
         rightSpeed = -rightSpeed - errorRate;
       } else {
@@ -55,7 +55,7 @@ public class ArcadeDriveCommand extends CommandBase {
         rightSpeed = 0;
       }
     } else {
-      if(rightTrigger) {
+      if(rightTrigger) { // just basic arcade drive for if your turning
         leftSpeed += leftX/4.0;
         rightSpeed -= leftX/4.0;
       } else if (leftTrigger) {
