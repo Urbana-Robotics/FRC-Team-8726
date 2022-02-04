@@ -34,8 +34,9 @@ public class RobotContainer {
   private final DriveTrain 
   m_driveTrain = new DriveTrain();
   private final Joystick m_joystick = new Joystick(0);
-  private final GlassNetworkTables m_networkTables = new GlassNetworkTables();
+  
   AnalogGyro gyro = new AnalogGyro(1);
+  private final GlassNetworkTables m_networkTables = new GlassNetworkTables(gyro);
   private final SimpleAuto m_simpleAutoCommand = new SimpleAuto(m_driveTrain, gyro);
   private final TankDriveCommand m_tankdrive = new TankDriveCommand(m_driveTrain, m_joystick);
   // private final ArcadeDriveCommand m_arcadedrive = new ArcadeDriveCommand(m_driveTrain, m_joystick);
@@ -45,6 +46,8 @@ public class RobotContainer {
     CommandScheduler.getInstance().setDefaultCommand(m_driveTrain, m_tankdrive);
     // Configure the button bindings
     configureButtonBindings();
+    gyro.reset();
+    gyro.calibrate();
   }
 
   /**

@@ -34,8 +34,8 @@ public class SimpleAuto extends CommandBase {
     timer = new Timer();
     timer.start();
 
-    gyro.reset();
-    gyro.calibrate();
+    //gyro.reset();
+    //gyro.calibrate();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
