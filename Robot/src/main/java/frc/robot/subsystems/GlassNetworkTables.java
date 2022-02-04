@@ -15,8 +15,8 @@ public class GlassNetworkTables extends SubsystemBase {
   NetworkTableEntry [] blueValues;
  
   AnalogGyro gyro;
-  public GlassNetworkTables() {
-    gyro = new AnalogGyro(1);
+  public GlassNetworkTables(AnalogGyro gyro) {
+    this.gyro = gyro;
     NetworkTableInstance instance = NetworkTableInstance.getDefault();
     NetworkTable table = instance.getTable("glassSensors");
     gyroAngle = table.getEntry("GyroAngle");
