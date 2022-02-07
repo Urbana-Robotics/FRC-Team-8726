@@ -5,6 +5,9 @@
 package frc.robot.commands;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+
+import javax.lang.model.util.ElementScanner6;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.Timer;
@@ -12,11 +15,7 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class SimpleAuto2 extends CommandBase {
   /** Creates a new SimpleAuto. */
-  //Variable Declarations
-  double speedRight = 0.35;
-  double speedLeft = 0.35;
-  double rotateSpeed = 0.35;
-  double rotateSpeedSlow = 0.25;
+
 
   //input
   AnalogGyro gyro = new AnalogGyro(1);//if not 1 its 0
@@ -40,50 +39,73 @@ public class SimpleAuto2 extends CommandBase {
 
   public void driveStraight(){
 
-    speedRight = 0.4;
-    speedLeft = 0.4;
+    //Variable Declarations
+   double speedRight = 0.35;
+   double speedLeft = 0.35;
+   double rotateSpeed = 0.35;
+   double rotateSpeedSlow = 0.25;
 
-  //Kick the robot code
-  if (Math.abs(gyro.getAngle()) <= 3) {
-    leftPower.set(speedRight - (gyro.getAngle()) / 15);
-    VictorSPX.set(speedRight - (gyro.getAngle()) / 15);
-  }
-  else if (Math.abs(gyro.getAngle()) < 10) {
-   if (gyro.getAngle() > 0) {
-    victorLeft.set(speedLeft);
-    victorRight.set(1.1 * speedRight);
-   } else if (gyro.getAngle() < 0) {
-    victorLeft.set(1.1 * speedLeft);
-    victorRight.set(speedRight);
+   if (Math.abs(gyro.getAngle()) <= 3){
+     speedLeft = speedLeft - (gyro.getAngle()/15);
+     speedRight = speedRight - (gyro.getAngle()/15);
    }
-  } else
-   if (gyro.getAngle() > 0) {
-    while (gyro.getAngle() > 10 && m_autonomousCommand()) {
-     victorLeft.set(-rotateSpeed);
-     victorRight.set(-rotateSpeed);
-    }
-   while (gyro.getAngle() > 0 && m_autonomousCommand()) {
-    victorLeft.set(-rotateSpeedSlow);
-    victorRight.set(-rotateSpeedSlow);
-   }
-   while (gyro.getAngle() < 0 && m_autonomousCommand()) {
-    victorLeft.set(rotateSpeedSlow);
-    victorRight.set(rotateSpeedSlow);
-   }
-  } else {
-   while (gyro.getAngle() < -10 && m_autonomousCommand()) {
-    victorLeft.set(rotateSpeed);
-    victorRight.set(rotateSpeed);
-   }
-   while (gyro.getAngle() < 0 && m_autonomousCommand()) {
-    victorLeft.set(rotateSpeedSlow);
-    victorRight.set(rotateSpeedSlow);
-   }
-   while (gyro.getAngle() > 0 && m_autonomousCommand()) {
-    victorLeft.set(-rotateSpeedSlow);
-    victorRight.set(-rotateSpeedSlow);
-   }
-    }
+   else if (Math.abs(gyro.getAngle()) < 10){
+      if (gyro.getAngle() > 0){
+        speedLeft = 0.35;
+        speedRight = 0.4;
+      }
+      else if(gyro.getAngle() < 0){
+        speedLeft = 0.4;
+        speedRight = 0.35;
+      }
+    } 
+
+      // if (gyro.getAngle() > 0){
+      //   while (gyro.getAngle() > 0 && m_autonomousCommand()){
+
+      //   }
+      // }
+ 
+  // if (Math.abs(gyro.getAngle()) <= 3) {
+  //   speedLeft = speedLeft/(1 + gyro.getAngle())*1;
+  //   (speedRight - (gyro.getAngle()) / 15);
+  // }
+  // else if (Math.abs(gyro.getAngle()) < 10) {
+  //  if (gyro.getAngle() > 0) {
+  //   victorLeft.set(speedLeft);
+  //   VictorSPX.set(1.1 * speedRight);
+  //  } else if (gyro.getAngle() < 0) {
+  //   victorLeft.set(1.1 * speedLeft);
+  //   victorRight.set(speedRight);
+  //  }
+  // } else
+  //  if (gyro.getAngle() > 0) {
+  //   while (gyro.getAngle() > 10 && m_autonomousCommand()) {
+  //    victorLeft.set(-rotateSpeed);
+  //    victorRight.set(-rotateSpeed);
+  //   }
+  //  while (gyro.getAngle() > 0 && m_autonomousCommand()) {
+  //   victorLeft.set(-rotateSpeedSlow);
+  //   victorRight.set(-rotateSpeedSlow);
+  //  }
+  //  while (gyro.getAngle() < 0 && m_autonomousCommand()) {
+  //   victorLeft.set(rotateSpeedSlow);
+  //   victorRight.set(rotateSpeedSlow);
+  //  }
+  // } else {
+  //  while (gyro.getAngle() < -10 && m_autonomousCommand()) {
+  //   victorLeft.set(rotateSpeed);
+  //   victorRight.set(rotateSpeed);
+  //  }
+  //  while (gyro.getAngle()< 0 && m_autonomousCommand()) {
+  //   victorLeft.set(rotateSpeedSlow);
+  //   victorRight.set(rotateSpeedSlow);
+  //  }
+  //  while (gyro.getAngle() > 0 && m_autonomousCommand()) {
+  //   victorLeft.set(-rotateSpeedSlow);
+  //   victorRight.set(-rotateSpeedSlow);
+  //  }
+  //   }
   }
   @Override
   public void end(boolean interrupted) {}
