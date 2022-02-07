@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;
 
 
@@ -14,8 +15,8 @@ public final class GlassNetworkTables extends SubsystemBase {
   private static NetworkTableEntry blueHUp,blueSUp,blueVUp,blueHLow,blueSLow,blueVLow;
   private static NetworkTableEntry [] blueValues;
  
-  AnalogGyro gyro;
-  public GlassNetworkTables(AnalogGyro gyro) {
+  private ADXRS450_Gyro gyro;
+  public GlassNetworkTables(ADXRS450_Gyro gyro) {
     this.gyro = gyro;
     NetworkTableInstance instance = NetworkTableInstance.getDefault();
     NetworkTable table = instance.getTable("glassSensors");
@@ -24,6 +25,7 @@ public final class GlassNetworkTables extends SubsystemBase {
     xGyro = table.getEntry("XGyro");
     yGyro = table.getEntry("yGyro");
     zGyro = table.getEntry("zGyro");
+    /*
     blueHUp = table.getEntry("blue H Upper");
     blueHUp.setNumber(94);
     blueSUp = table.getEntry("blue S Upper");
@@ -36,7 +38,9 @@ public final class GlassNetworkTables extends SubsystemBase {
     blueSLow.setNumber(203);
     blueVLow = table.getEntry("blue V Lower");
     blueVLow.setNumber(178);
+    
     blueValues = new NetworkTableEntry[] {blueHUp,blueSUp,blueVUp,blueHLow,blueSLow,blueVLow};
+    */
     //NetworkTableEntry yaw = table.getEntry("yawAxis");
     //System.out.println(gyro.getBoardYawAxis());
   }
@@ -48,6 +52,7 @@ public final class GlassNetworkTables extends SubsystemBase {
     gyroAngle.setNumber(gyro.getAngle());
     
   }
+  /*
 
   public static double[][] getBlueRanges(){
     double[][] vals = new double[2][3];
@@ -61,6 +66,7 @@ public final class GlassNetworkTables extends SubsystemBase {
     }
     return vals;
   }
+  */
   @Override
   public void simulationPeriodic() {
     // This method will be called once per scheduler run during simulation

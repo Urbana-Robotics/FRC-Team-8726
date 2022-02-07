@@ -9,20 +9,20 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.PS4Controller.Button;
 import frc.robot.commands.ADCommand;
-import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.DPadGyroCommand;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.GlassNetworkTables;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.SimpleAuto;
 import frc.robot.commands.TankDriveCommand;
-import frc.robot.commands.ArcadeDriveCommand;
-// import frc.robot.subsystems.BasicVision;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+//import frc.robot.subsystems.BasicVision;
 import edu.wpi.first.wpilibj.AnalogGyro;
-
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -32,26 +32,27 @@ import edu.wpi.first.wpilibj.AnalogGyro;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   
   private final DriveTrain m_driveTrain = new DriveTrain();
 
   private final Joystick m_joystick = new Joystick(0);
   
-  AnalogGyro gyro = new AnalogGyro(1);
+  //private final AnalogGyro gyro = new AnalogGyro(1);
+  private final ADXRS450_Gyro gyro = new ADXRS450_Gyro();
   private final GlassNetworkTables m_networkTables = new GlassNetworkTables(gyro);
-  // private final BasicVision m_basicVision = new BasicVision();
-  private final SimpleAuto m_simpleAutoCommand = new SimpleAuto(m_driveTrain, gyro);
-  // private final ADCommand DiffDriveArcadeDrive = new ADCommand(m_driveTrain, m_joystick);
-  private final ArcadeDriveCommand DiffDriveArcadeDrive = new ArcadeDriveCommand(m_driveTrain, m_joystick, gyro);
+  //private final BasicVision m_basicVision = new BasicVision();
+  //private final SimpleAuto m_simpleAutoCommand = new SimpleAuto(m_driveTrain, gyro);
+  private final ADCommand DiffDriveArcadeDrive = new ADCommand(m_driveTrain, m_joystick);
+  private final DPadGyroCommand m_dpadGyroCommand = new DPadGyroCommand(m_driveTrain, m_joystick, gyro);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     CommandScheduler.getInstance().setDefaultCommand(m_driveTrain, DiffDriveArcadeDrive);
     // Configure the button bindings
     configureButtonBindings();
-    gyro.reset();
     gyro.calibrate();
+    gyro.reset();
+    //gyro.setSensitivity(0.0128); // Volts per degree per second
   }
 
   /**
@@ -61,7 +62,8 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    //
+    JoystickButton button_A = new JoystickButton(m_joystick, 1);
+    button_A.whileHeld(m_dpadGyroCommand);
   }
 
   /**
@@ -71,7 +73,8 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_simpleAutoCommand;
+    //return m_simpleAutoCommand;
+    return m_dpadGyroCommand;
   }
   
 }

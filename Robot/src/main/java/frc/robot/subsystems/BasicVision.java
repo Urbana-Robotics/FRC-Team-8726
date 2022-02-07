@@ -20,6 +20,8 @@ import org.opencv.core.Point;
 import org.opencv.core.RotatedRect;
 
 import edu.wpi.first.cameraserver.CameraServer;
+
+/*
 public class BasicVision extends SubsystemBase {
     AxisCamera cam1;
     CvSink sink1;
@@ -85,3 +87,5 @@ public class BasicVision extends SubsystemBase {
     }
 
 }
+
+*/
