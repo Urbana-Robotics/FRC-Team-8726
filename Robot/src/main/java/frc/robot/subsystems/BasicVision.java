@@ -1,10 +1,12 @@
 package frc.robot.subsystems;
 
+import frc.robot.subsystems.GlassNetworkTables;
 import edu.wpi.first.cscore.AxisCamera;
 import edu.wpi.first.cscore.CvSink;
 import edu.wpi.first.cscore.CvSource;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import org.opencv.imgproc.Imgproc;
+
 
 import java.util.List;
 
@@ -45,7 +47,9 @@ public class BasicVision extends SubsystemBase {
     }
     @Override
     public void periodic() {
-        
+        double[][] blueRange = GlassNetworkTables.getBlueRanges();
+        blueUp.set(blueRange[0]);
+        blueLow.set(blueRange[1]);
         sink1.grabFrame(currentFrameRaw);
         Imgproc.cvtColor(currentFrameProc, currentFrameProc, Imgproc.COLOR_BGR2HSV);
         Core.inRange(currentFrameProc, blueLow, blueUp, blueMask);//TODO: tune color ranges and add red

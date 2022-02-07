@@ -14,15 +14,16 @@ public class SimpleAuto extends CommandBase {
   DriveTrain dt;
   Timer timer;
 
-  AnalogGyro gyro = new AnalogGyro(1);
+  AnalogGyro gyro;
 
   double currentAngle;
   double errorRate;
   double errorAngle;
-  double rightPower = 0.5;
-  double leftPower = 0.5;
+  double rightPower = 0.25;
+  double leftPower = 0.25;
 
-  public SimpleAuto(DriveTrain dt) {
+  public SimpleAuto(DriveTrain dt, AnalogGyro gyro) {
+    this.gyro = gyro;
     this.dt = dt;
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -32,20 +33,24 @@ public class SimpleAuto extends CommandBase {
   public void initialize() {
     timer = new Timer();
     timer.start();
+    
 
-    gyro.reset();
-    gyro.calibrate();
+    //gyro.reset();
+    //gyro.calibrate();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     
-    currentAngle = gyro.getAngle();
+    // currentAngle = gyro.getAngle();
 
-    System.out.println(Math.round(currentAngle));
+    // System.out.println(currentAngle);
+
+    // setHeadingInplace(90.0);
 
     // dt.drive(leftPower/2.0, rightPower/2.0);
+    dt.drive(0.25, -0.25);
     
   }
 
@@ -74,7 +79,8 @@ public class SimpleAuto extends CommandBase {
       leftPower = -leftPower;
     }
 
-    dt.drive(leftPower * errorAngle, -rightPower * errorAngle);
+    // dt.drive(leftPower * errorAngle, -rightPower * errorAngle);
+    dt.drive(-0.25, 0.25);
   }
 
   public void setHeadingArc(double heading, double turnRate) { // turns to the specified angle in an arc, turnRate is the rate at which the robot turns

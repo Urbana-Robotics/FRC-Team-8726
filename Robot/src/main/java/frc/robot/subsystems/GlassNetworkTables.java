@@ -9,14 +9,14 @@ import edu.wpi.first.wpilibj.AnalogGyro;
 
 
 
-public class GlassNetworkTables extends SubsystemBase {
-  NetworkTableEntry gyroAngle,xGyro,yGyro,zGyro,gyroRate;
-  NetworkTableEntry blueHUp,blueSUp,blueVUp,blueHLow,blueSLow,blueVLow;
-  NetworkTableEntry [] blueValues;
+public final class GlassNetworkTables extends SubsystemBase {
+  private static NetworkTableEntry gyroAngle,xGyro,yGyro,zGyro,gyroRate;
+  private static NetworkTableEntry blueHUp,blueSUp,blueVUp,blueHLow,blueSLow,blueVLow;
+  private static NetworkTableEntry [] blueValues;
  
   AnalogGyro gyro;
-  public GlassNetworkTables() {
-    gyro = new AnalogGyro(1);
+  public GlassNetworkTables(AnalogGyro gyro) {
+    this.gyro = gyro;
     NetworkTableInstance instance = NetworkTableInstance.getDefault();
     NetworkTable table = instance.getTable("glassSensors");
     gyroAngle = table.getEntry("GyroAngle");
@@ -25,11 +25,17 @@ public class GlassNetworkTables extends SubsystemBase {
     yGyro = table.getEntry("yGyro");
     zGyro = table.getEntry("zGyro");
     blueHUp = table.getEntry("blue H Upper");
+    blueHUp.setNumber(94);
     blueSUp = table.getEntry("blue S Upper");
+    blueSUp.setNumber(107);
     blueVUp = table.getEntry("blue V Upper");
+    blueVUp.setNumber(43);
     blueHLow = table.getEntry("blue H Lower");
+    blueHLow.setNumber(119);
     blueSLow = table.getEntry("blue S Lower");
+    blueSLow.setNumber(203);
     blueVLow = table.getEntry("blue V Lower");
+    blueVLow.setNumber(178);
     blueValues = new NetworkTableEntry[] {blueHUp,blueSUp,blueVUp,blueHLow,blueSLow,blueVLow};
     //NetworkTableEntry yaw = table.getEntry("yawAxis");
     //System.out.println(gyro.getBoardYawAxis());
@@ -43,10 +49,15 @@ public class GlassNetworkTables extends SubsystemBase {
     
   }
 
-  public int[] getBlueRanges(){
-    int[] vals = new int[6];
+  public static double[][] getBlueRanges(){
+    double[][] vals = new double[2][3];
     for (int i = 0;i<6;i++){
-      vals[i] =  blueValues[i].getNumber(0).intValue();
+      if (i>3){
+        vals[0][i] = blueValues[i].getDouble(0);
+      } else {
+        vals[1][i-3] = blueValues[i].getDouble(0);
+      }
+      
     }
     return vals;
   }
