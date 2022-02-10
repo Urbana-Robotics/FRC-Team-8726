@@ -23,7 +23,7 @@ import frc.robot.commands.TankDriveCommand;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 //import frc.robot.subsystems.BasicVision;
 import edu.wpi.first.wpilibj.AnalogGyro;
-
+import frc.robot.commands.ArcadeDriveCommand;
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -42,7 +42,8 @@ public class RobotContainer {
   private final GlassNetworkTables m_networkTables = new GlassNetworkTables(gyro);
   //private final BasicVision m_basicVision = new BasicVision();
   //private final SimpleAuto m_simpleAutoCommand = new SimpleAuto(m_driveTrain, gyro);
-  private final ADCommand DiffDriveArcadeDrive = new ADCommand(m_driveTrain, m_joystick);
+  // private final ADCommand DiffDriveArcadeDrive = new ADCommand(m_driveTrain, m_joystick);
+  private final ArcadeDriveCommand DiffDriveArcadeDrive = new ArcadeDriveCommand(m_driveTrain, m_joystick, gyro);
   private final DPadGyroCommand m_dpadGyroCommand = new DPadGyroCommand(m_driveTrain, m_joystick, gyro);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */

@@ -21,5 +21,7 @@
 |---|---|
 |Left X|0|
 |Left Y|1|
+|Left Trigger|2|
+|Right Trigger|3|
 |Right X|4|
 |Right Y|5|
